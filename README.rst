@@ -1,10 +1,24 @@
 .. image:: https://travis-ci.org/InspectorMustache/base16-builder-python.svg?branch=master
    :target: https://travis-ci.org/InspectorMustache/base16-builder-python
 
-Deprecated
+Fork Notes
 ==========
 
-Use `base24-builder-python <https://github.com/Base24/base24-builder-python>`_ instead. Sorry to anyone who's been waiting for me to update this repo.
+Upstream https://github.com/Pu-Anlai/base16-builder-python is archived and considered deprecated, it links to an alternative but as of 2025 it is not functional.
+
+Pure Python bas16 builder with minimal (but not zero) dependencies.
+Wants to build everything, currently no support to limit (color/theme)
+schemes or templates other than by limiting contents of `schemes/` and
+`templates/` directories.
+
+Update mode (see later) relies on:
+
+https://github.com/clach04/base16-builder-python/blob/27fc4bb7cf21c32a13f872366e45544a841adf01/pybase16_builder/updater.py#L11..14
+
+These are forked as a backup to:
+
+  * https://github.com/clach04/base16-schemes-source
+  * https://github.com/clach04/base16-templates-source
 
 base16-builder-python
 =====================
