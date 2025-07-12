@@ -1,4 +1,12 @@
+import sys
 from setuptools import setup
+
+is_win = sys.platform.startswith('win')
+
+install_requires = ["aiofiles", "pystache", "pyyaml"]
+if is_win:
+    install_requires += ["colorama"]
+
 
 setup(
     name="pybase16-builder",
@@ -18,7 +26,7 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
     ],
     keywords="base16",
-    install_requires=["pystache", "pyyaml", "aiofiles"],
+    install_requires=install_requires,
     python_requires=">=3.5",
     entry_points={"console_scripts": ["pybase16 = pybase16_builder.cli:run"]},
 )
