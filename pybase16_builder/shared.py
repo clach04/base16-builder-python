@@ -5,6 +5,29 @@ import yaml
 from collections import namedtuple
 from contextlib import contextmanager
 
+try:
+    import colorama  # pip install colorama
+except ImportError:
+    colorama = None
+
+is_win = sys.platform.startswith('win')
+if is_win:
+    use_color = False
+else:
+    use_color = True
+
+if colorama:
+    try:
+        colorama.just_fix_windows_console()
+    except AttributeError:
+        # older version, for example '0.4.4'
+        colorama.init()
+    use_color = True
+
+if os.environ.get('NO_COLOR') or not sys.stdout.isatty():  # NO_COLOR https://no-color.org/
+    # skips processing for doing highlighting
+    use_color = False
+
 
 class JobOptions:
     """Container for options related to job processing"""
@@ -16,7 +39,10 @@ class JobOptions:
 
 CWD = os.path.realpath(os.getcwd())
 ACodes = namedtuple("ACodes", ["red", "yellow", "bold", "end"])
-acodes = ACodes(red="\033[31m", yellow="\033[33m", bold="\033[1m", end="\033[0m")
+if use_color:
+    acodes = ACodes(red="\033[31m", yellow="\033[33m", bold="\033[1m", end="\033[0m")
+else:
+    acodes = ACodes(red="", yellow="", bold="", end="")
 
 
 @contextmanager
